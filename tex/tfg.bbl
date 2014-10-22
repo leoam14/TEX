@@ -1,0 +1,188 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.2 }
+
+\bibitem[Almeida, Ferreira e Val{\'e}rio 2013]{de2013microkernel}
+\abntrefinfo{Almeida, Ferreira e Val{\'e}rio}{ALMEIDA; FERREIRA;
+  VAL{\'E}RIO}{2013}
+{ALMEIDA, R. M.~A. de; FERREIRA, L. H. d.~C.; VAL{\'E}RIO, C.~H. Microkernel
+  development for embedded systems.
+\emph{Journal of Software Engineering and Applications}, JSEA, v.~6, n.~1, p.
+  20--28, 2013.}
+
+\bibitem[AO et al.]{aomontagem}
+\abntrefinfo{AO et al.}{AO et al.}{}
+{AO, E. D.~C. et al. Montagem de um robˆo autˆonomo utilizando logica fuzzy.}
+
+\bibitem[Barr 1999]{barr1999programming}
+\abntrefinfo{Barr}{BARR}{1999}
+{BARR, M. \emph{Programming embedded systems in C and C++}. [S.l.]: O'Reilly
+  Media, Inc., 1999.}
+
+\bibitem[Barros e Cavalcante 2002]{barrosintroduccao}
+\abntrefinfo{Barros e Cavalcante}{BARROS; CAVALCANTE}{2002}
+{BARROS, E.; CAVALCANTE, S. Introdu{\c{c}}{\~a}o aos sistemas embarcados.
+\emph{Universidade Federal de Pernambuco – UFPE}, 2002.}
+
+\bibitem[Borchert, Schirmeier e Spinczyk 2013]{borchert2013generative}
+\abntrefinfo{Borchert, Schirmeier e Spinczyk}{BORCHERT; SCHIRMEIER;
+  SPINCZYK}{2013}
+{BORCHERT, C.; SCHIRMEIER, H.; SPINCZYK, O. Generative software-based memory
+  error detection and correction for operating system data structures. In:
+  IEEE. \emph{Dependable Systems and Networks (DSN), 2013 43rd Annual IEEE/IFIP
+  International Conference on}. [S.l.], 2013. p. 1--12.}
+
+\bibitem[Breyfogle 2003]{breyfogle2003implementing}
+\abntrefinfo{Breyfogle}{BREYFOGLE}{2003}
+{BREYFOGLE, F.~W. \emph{Implementing Six Sigma: smarter solutions using
+  statistical methods}. [S.l.]: Wiley. com, 2003.}
+
+\bibitem[Chaudhari, Park e Abraham 2013]{chaudhari2013framework}
+\abntrefinfo{Chaudhari, Park e Abraham}{CHAUDHARI; PARK; ABRAHAM}{2013}
+{CHAUDHARI, A.; PARK, J.; ABRAHAM, J. A framework for low overhead hardware
+  based runtime control flow error detection and recovery. In:  IEEE.
+  \emph{VLSI Test Symposium (VTS), 2013 IEEE 31st}. [S.l.], 2013. p.~1--6.}
+
+\bibitem[Denardin e Barriquello 2013]{brtos2013online}
+\abntrefinfo{Denardin e Barriquello}{DENARDIN; BARRIQUELLO}{2013}
+{DENARDIN, G.; BARRIQUELLO, C.~H. \emph{BRTOS - Brazilian Real-Time Operating
+  System}. 2013.
+Dispon{\'\i}vel em: \url{https://code.google.com/p/brtos/}.}
+
+\bibitem[Engineers 2013]{freertos2013online}
+\abntrefinfo{Engineers}{ENGINEERS}{2013}
+{ENGINEERS, R.~T. \emph{FreeRTOS}. 2013.
+Dispon{\'\i}vel em: \url{http://www.freertos.org}.}
+
+\bibitem[Geoff 2001]{geoff2001six}
+\abntrefinfo{Geoff}{GEOFF}{2001}
+{GEOFF, T. \emph{Six Sigma: SPC and TQM in manufacturing and services}. [S.l.]:
+  Gower Publishing, Ltd., 2001.}
+
+\bibitem[Kai, Xin e Guo 2012]{kai2012secure}
+\abntrefinfo{Kai, Xin e Guo}{KAI; XIN; GUO}{2012}
+{KAI, T.; XIN, X.; GUO, C. The secure boot of embedded system based on mobile
+  trusted module. In:  IEEE. \emph{Intelligent System Design and Engineering
+  Application (ISDEA), 2012 Second International Conference on}. [S.l.], 2012.
+  p. 1331--1334.}
+
+\bibitem[Koopman e Chakravarty 2004]{koopman2004cyclic}
+\abntrefinfo{Koopman e Chakravarty}{KOOPMAN; CHAKRAVARTY}{2004}
+{KOOPMAN, P.; CHAKRAVARTY, T. Cyclic redundancy code (crc) polynomial selection
+  for embedded networks. In:  IEEE. \emph{Dependable Systems and Networks, 2004
+  International Conference on}. [S.l.], 2004. p. 145--154.}
+
+\bibitem[Kurose e Ross 2012]{kurose2012computer}
+\abntrefinfo{Kurose e Ross}{KUROSE; ROSS}{2012}
+{KUROSE, J.~F.; ROSS, K.~W. \emph{Computer networking}. [S.l.]: Pearson
+  Education, 2012.}
+
+\bibitem[LeMay e Gunter 2012]{lemay2012cumulative}
+\abntrefinfo{LeMay e Gunter}{LEMAY; GUNTER}{2012}
+{LEMAY, M.; GUNTER, C.~A. Cumulative attestation kernels for embedded systems.
+\emph{Smart Grid, IEEE Transactions on}, IEEE, v.~3, n.~2, p. 744--760, 2012.}
+
+\bibitem[Li et al. 2006]{li2006model}
+\abntrefinfo{Li et al.}{LI et al.}{2006}
+{LI, H. et al. A model for soft errors in the subthreshold cmos inverter. In:
+  \emph{Proceedings of Workshop on System Effects of Logic Soft Errors}. [S.l.:
+  s.n.], 2006.}
+
+\bibitem[Micrium 2013]{micrium2013online}
+\abntrefinfo{Micrium}{MICRIUM}{2013}
+{MICRIUM. \emph{uC/OS-II Real Time Kernel}. 2013.
+Dispon{\'\i}vel em: \url{http://micrium.com/rtos/ucosii/overview/}.}
+
+\bibitem[PaXTeam 2012]{pax2012h2hc}
+\abntrefinfo{PaXTeam}{PAXTEAM}{2012}
+{PAXTEAM. \emph{PaX - kernel self-protection}. 2012.
+Dispon{\'\i}vel em:
+  \url{http://pax.grsecurity.net/docs/PaXTeam-H2HC12-PaX-kernel-self-protection.pdf}.}
+
+\bibitem[Peek 2013]{peek2013complexity}
+\abntrefinfo{Peek}{PEEK}{2013}
+{PEEK, J. Complexity analysis of new multi level feedback queue scheduler.
+\emph{American Journal of Computing and Computation}, v.~3, n.~2, p. 14--28,
+  2013.}
+
+\bibitem[Rao et al. 2009]{rao2009simplified}
+\abntrefinfo{Rao et al.}{RAO et al.}{2009}
+{RAO, M.~P. et al. A simplified study of scheduler for real time and embedded
+  system domain.
+\emph{Georgian Electronic Scientific Journal: Computer Science and
+  Telecommunications}, n. 5(22), p. 60--73, 2009.}
+
+\bibitem[Ray e Koopman 2006]{ray2006efficient}
+\abntrefinfo{Ray e Koopman}{RAY; KOOPMAN}{2006}
+{RAY, J.; KOOPMAN, P. Efficient high hamming distance crcs for embedded
+  networks. In:  IEEE. \emph{Dependable Systems and Networks, 2006. DSN 2006.
+  International Conference on}. [S.l.], 2006. p. 3--12.}
+
+\bibitem[Renaux, Braga e Kawamura 1999]{reneaux1999}
+\abntrefinfo{Renaux, Braga e Kawamura}{RENAUX; BRAGA; KAWAMURA}{1999}
+{RENAUX, D. P.~B.; BRAGA, A.~S.; KAWAMURA, A. Perf3: Um ambiente para
+  avaliação temporal de sistemas em tempo real. In:  \emph{II Workshop de
+  Sistemas em Tempo Real}. [S.l.: s.n.], 1999.}
+
+\bibitem[River 2013]{windRiver2013}
+\abntrefinfo{River}{RIVER}{2013}
+{RIVER, W. \emph{Wind River VxWorks Platforms 6.9}.
+[S.l.], 2013. Dispon{\'\i}vel em:
+  \url{http://www.windriver.com/products/product-notes/PN\_VE\_6\_9\_Platform\_0311.pdf}.}
+
+\bibitem[Silberschatz, Galvin e Gagne 2009]{silberschatz2009operating}
+\abntrefinfo{Silberschatz, Galvin e Gagne}{SILBERSCHATZ; GALVIN; GAGNE}{2009}
+{SILBERSCHATZ, A.; GALVIN, P.~B.; GAGNE, G. \emph{Operating system concepts}.
+  [S.l.]: J. Wiley \& Sons, 2009.}
+
+\bibitem[Stallings 2009]{stallings2009operating}
+\abntrefinfo{Stallings}{STALLINGS}{2009}
+{STALLINGS, W. \emph{Operating Systems: Internals and Design Principles, 6/E}.
+  [S.l.]: Pearson Education, 2009.}
+
+\bibitem[Tanenbaum, Herder e Bos 2006]{tanenbaum2006can}
+\abntrefinfo{Tanenbaum, Herder e Bos}{TANENBAUM; HERDER; BOS}{2006}
+{TANENBAUM, A.~S.; HERDER, J.~N.; BOS, H. Can we make operating systems
+  reliable and secure?
+\emph{Computer}, IEEE, v.~39, n.~5, p. 44--51, 2006.}
+
+\bibitem[Vakulenko 2011]{vakulenko2011online}
+\abntrefinfo{Vakulenko}{VAKULENKO}{2011}
+{VAKULENKO, S. \emph{uOS Operating System for Embedded Applications}. 2011.
+Dispon{\'\i}vel em: \url{https://code.google.com/p/uos-embedded/wiki/about}.}
+
+\bibitem[Ven 2004]{van2004new}
+\abntrefinfo{Ven}{VEN}{2004}
+{VEN, A. van~de. New security enhancements in red hat enterprise linux v. 3,
+  update 3.
+\emph{Red Hat, August}, 2004.}
+
+\bibitem[Wikipedia 2013]{wiki2013buffer}
+\abntrefinfo{Wikipedia}{WIKIPEDIA}{2013}
+{WIKIPEDIA. \emph{Stack buffer overflow}. 2013.
+Dispon{\'\i}vel em:
+  \url{http://en.wikipedia.org/wiki/Stack\\_buffer\\_overflow}.}
+
+\bibitem[Williams 1993]{williams1993painless}
+\abntrefinfo{Williams}{WILLIAMS}{1993}
+{WILLIAMS, R. A painless guide to crc error detection algorithms - chap.4:
+  Polynomical arithmetic.
+\emph{Internet publication, August}, 1993.
+Dispon{\'\i}vel em:
+  \url{http://ceng2.ktu.edu.tr/~cevhers/ders\_materyal/bil311\_bilgisayar\_mimarisi/supplementary\_docs/crc\_algorithms.pdf}.}
+
+\bibitem[Wulf et al. 1974]{wulf1974hydra}
+\abntrefinfo{Wulf et al.}{WULF et al.}{1974}
+{WULF, W. et al. Hydra: The kernel of a multiprocessor operating system.
+\emph{Communications of the ACM}, ACM, v.~17, n.~6, p. 337--345, 1974.}
+
+\bibitem[Yim et al. 2011]{yim2011hauberk}
+\abntrefinfo{Yim et al.}{YIM et al.}{2011}
+{YIM, K.~S. et al. Hauberk: Lightweight silent data corruption error detector
+  for gpgpu. In:  IEEE. \emph{Parallel \& Distributed Processing Symposium
+  (IPDPS), 2011 IEEE International}. [S.l.], 2011. p. 287--300.}
+
+\end{thebibliography}
