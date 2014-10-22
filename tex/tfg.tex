@@ -411,100 +411,106 @@ A escolha do polinômio divisor G(x) é pautada basicamente por dois requeriment
 
 \chapter{Desenvolvimento}
 
-Tradicionalmente, os sistemas de proteção à memória são implementados em \textit{hardware} por questões de velocidade \cite{chaudhari2013framework,lemay2012cumulative}. As soluções em \textit{software}, em geral, apresentam um consumo muito alto \cite{pax2012h2hc,kai2012secure, yim2011hauberk,van2004new}. Uma opção para reduzir esse consumo é realizar a proteção apenas das regiões mais importantes, que normalmente são os objetos do \textit{kernel} \cite{borchert2013generative}. No entanto, estas abordagens são focadas em sistemas \textit{desktops} ou para embarcados com maior capacidade computacional, sendo inviáveis para processadores de baixo custo.
+Conforme citado anteriormente, o sistema foi dividido em três camadas, de modo que cada uma delas será capaz de realizar suas funções e interagir com as camadas adjacentes. As três camadas são: Sistema Embarcado, Dinâmica Reversa e Visão computacional.
 
-Entre sistemas que utilizam processadores de baixo custo estão diversos controladores industriais, painéis de elevadores comerciais, sensores inteligentes, carros e grande parte de eletrônicos com pouca interação humana.
-
-A Figura~\ref{fig:KernelSeguro} apresenta a solução proposta: realizar a verificação de erros em toda troca de contexto através de informações extras armazenadas na pilha de dados. Todos os acessos realizados pela troca de contexto terão suporte de um sistema de verificação de integridade da informação utilizando os algoritmos de CRC ou Hamming.
-
-\begin{figure}[htbp]
-	\begin{center}
-	\includegraphics[width=7cm]{img/interfaceKernelSeguro.pdf}
-	\caption{Modelo de sistema com verificação de erros na pilha}
-	\label{fig:KernelSeguro}
-	\end{center}
-\end{figure}
-
-Optou-se neste trabalho por realizar a proteção por meio de algoritmos que gerem um código de verificação por bloco de memória, evitando-se assim o gasto demasiado de memória RAM. Com relação ao consumo de processamento foi dada preferência para os algoritmos mais simples com capacidade de correção ou detecção de erros.
-
-%TODO reescrever pensando no método mix do escalonador
-As rotinas de troca de contexto de um sistema operacional são bastante complexas, primeiro por serem muito particulares para cada processador e segundo por possuírem códigos em \textit{assembly}, de difícil adaptação.
-
-Por este motivo optou-se pela utilização de um sistema operacional desenvolvido pelos autores \cite{de2013microkernel}, facilitando a adaptação das rotinas necessárias na troca de contexto. O sistema operacional foi separado em 4 camadas: aplicação (amarelo), microkernel (vermelho), controladora de drivers (azul) e os drivers (preto e verde). A Figura~\ref{fig:diagramaClasse} apresenta um resumo do sistema desenvolvido, a interligação do \textit{kernel} com a aplicação e a controladora de \textit{drivers} bem como todos os \textit{drivers} implementados.
-
-\begin{figure}[htbp]
-	\begin{center}
-	\includegraphics[width=13cm]{uml/umlCompleto.eps}
-	\caption{Diagrama UML do sistema desenvolvido}
-	\label{fig:diagramaClasse}
-	\end{center}
-\end{figure}
-
-A aplicação pode ser composta de mais de um processo que são gerenciados pelo kernel através de uma estrutura do tipo \textit{process}. Estes processos são implementados como funções contendo \textit{loops} infinitos. A adição, remoção, pausa ou continuidade na execução dos processos é definida pelas interfaces disponibilizadas no kernel. Maiores detalhes do kernel e a implementação das rotinas são apresentados na próxima seção.
-
-O desenvolvimento da controladora de \textit{drivers} pode ser visto no anexo~\ref{chap:controladora}. Desenvolveu-se uma interface bastante simples para gerenciamento das interações entre a aplicação e os dispositivos, sendo composta de apenas 3 funções. Esta simplificação foi possível pela utilização de uma estrutura comum para todos os drivers, apresentada em verde no diagrama da Figura~\ref{fig:diagramaClasse}.
-
-Da estrutura apresentada, dois \textit{drivers} devem ser notados: \textit{drvPID} e \textit{ctrlMngr}. Embora gerenciados pela controladora como \textit{drivers} normais, eles não fazem acesso ao \textit{hardware} diretamente. Eles agrupam informações de outros \textit{drivers} ou provém novos modos de uso dos \textit{drivers} apresentados. 
-
-O desenvolvimento se concentrou na implementação de uma troca de contexto segura em um \textit{microkernel}. A estrutura de \textit{microkernel} foi escolhida por questões de isolamento e segurança \cite{tanenbaum2006can}. Foi desenvolvida uma controladora de \textit{drivers} permitindo a exibição, armazenamento e análise dos dados recolhidos do sistema. Optou-se por um sistema de controle real, como plataforma de testes, principalmente por este tipo de sistema necessitar de execução em tempo real.
-
-O Código~\ref{cod:kernelClock} apresenta a função responsável pela troca de contexto das tarefas e foi desenvolvido de acordo com as especificações apresentadas na Tabela~\ref{tab:StackSeguranca}.
+\subsection{Sistema Embarcado}
 
 
-\begin{lstlisting}[float,caption=Rotina responsável por executar a troca de contexto entre os processos,label=cod:kernelClock]
-void interrupt kernelClock(void){
-  //at this point CCR,D,X,Y,SP are stored on the stack
-  volatile unsigned int SPdummy;     //stack pointer temporary value
-  volatile unsigned int crc_on_stack;//point to the crc on the stack
-  crc_on_stack = 1;           //just to avoid optmization error
-    __asm PULD; __asm PULD;     //remove SPdummy & crc_on_stack
-  __asm LDAA 0x30; __asm PSHA;//storing PPage on the stack
-  __asm PSHD; __asm PSHD;     //recreating crc_on_stack & SPdummy
-  __asm TSX;                  //fill SPdummy with actual stack position
-  __asm STX SPdummy;
-  
-  //storing check value  
-  if (pool[actualTask].Prio == RTOS){
-    crc_on_stack  = hamming((unsigned char *)SPdummy+4,10);
-  } else {
-    crc_on_stack  = crc16((unsigned char *)SPdummy+4,10); 
-  }
-  __asm TSX;		  //save SP value on process info for further recover
-  __asm STX SPdummy;
-  pool[actualTask].StackPoint = SPdummy+2; //+2 to point to stack top
-  if (pool[actualTask].Status == RUNNING){
-    pool[actualTask].Status = READY;
-  }
-  actualTask = Scheduler();
-  pool[actualTask].Status = RUNNING;
-  SPdummy = pool[actualTask].StackPoint; 
-  __asm LDX SPdummy; //load the next task SP from process info
-  __asm TXS;
-  __asm PSHD;        //restore space for SPdummy variable
-  
-  //reading check value and checking the data integrity
-  if (pool[actualTask].Prio == RTOS){
-    SPdummy  = hamming((unsigned char *)(pool[actualTask].StackPoint+2),10);
-    if (crc_on_stack != SPdummy) { //making XOR to find bit changed
-      crc_on_stack = (crc_on_stack^SPdummy) - 136; 
-      if (crc_on_stack < 80){
-*((unsigned char *) (pool[actualTask].StackPoint+2+(crc_on_stack/8))) = *((unsigned char *) (pool[actualTask].StackPoint+2+(crc_on_stack/8))) ^ (1<<(crc_on_stack%8));
-      }
-    }
-  } else {
-    SPdummy= crc16((unsigned char *)(pool[actualTask].StackPoint+2),10); 
-    if (crc_on_stack != SPdummy) {
-       SPdummy = restartTask(actualTask)-2;
-       __asm LDX SPdummy;
-       __asm TXS;
-    }
-  }
-  __asm PULD; __asm PULD;     //remove crc_on_stack & SPdummy
-  __asm PULA; __asm STAA 0x30;//set PPage for the next process
-  CRGFLG = 0x80;              //clearing the RTI flag
-  __asm RTI;                  //All other context loading is done by RTI
-}
-\end{lstlisting}
+
+%Tradicionalmente, os sistemas de proteção à memória são implementados em \textit{hardware} por questões de velocidade \cite{chaudhari2013framework,lemay2012cumulative}. As soluções em \textit{software}, em geral, apresentam um consumo muito alto \cite{pax2012h2hc,kai2012secure, yim2011hauberk,van2004new}. Uma opção para reduzir esse consumo é realizar a proteção apenas das regiões mais importantes, que normalmente são os objetos do \textit{kernel} \cite{borchert2013generative}. No entanto, estas abordagens são focadas em sistemas \textit{desktops} ou para embarcados com maior capacidade computacional, sendo inviáveis para processadores de baixo custo.
+%
+%Entre sistemas que utilizam processadores de baixo custo estão diversos controladores industriais, painéis de elevadores comerciais, sensores inteligentes, carros e grande parte de eletrônicos com pouca interação humana.
+%
+%A Figura~\ref{fig:KernelSeguro} apresenta a solução proposta: realizar a verificação de erros em toda troca de contexto através de informações extras armazenadas na pilha de dados. Todos os acessos realizados pela troca de contexto terão suporte de um sistema de verificação de integridade da informação utilizando os algoritmos de CRC ou Hamming.
+%
+%\begin{figure}[htbp]
+%	\begin{center}
+%	\includegraphics[width=7cm]{img/interfaceKernelSeguro.pdf}
+%	\caption{Modelo de sistema com verificação de erros na pilha}
+%	\label{fig:KernelSeguro}
+%	\end{center}
+%\end{figure}
+%
+%Optou-se neste trabalho por realizar a proteção por meio de algoritmos que gerem um código de verificação por bloco de memória, evitando-se assim o gasto demasiado de memória RAM. Com relação ao consumo de processamento foi dada preferência para os algoritmos mais simples com capacidade de correção ou detecção de erros.
+%
+%%TODO reescrever pensando no método mix do escalonador
+%As rotinas de troca de contexto de um sistema operacional são bastante complexas, primeiro por serem muito particulares para cada processador e segundo por possuírem códigos em \textit{assembly}, de difícil adaptação.
+%
+%Por este motivo optou-se pela utilização de um sistema operacional desenvolvido pelos autores \cite{de2013microkernel}, facilitando a adaptação das rotinas necessárias na troca de contexto. O sistema operacional foi separado em 4 camadas: aplicação (amarelo), microkernel (vermelho), controladora de drivers (azul) e os drivers (preto e verde). A Figura~\ref{fig:diagramaClasse} apresenta um resumo do sistema desenvolvido, a interligação do \textit{kernel} com a aplicação e a controladora de \textit{drivers} bem como todos os \textit{drivers} implementados.
+%
+%\begin{figure}[htbp]
+%	\begin{center}
+%	\includegraphics[width=13cm]{uml/umlCompleto.eps}
+%	\caption{Diagrama UML do sistema desenvolvido}
+%	\label{fig:diagramaClasse}
+%	\end{center}
+%\end{figure}
+%
+%A aplicação pode ser composta de mais de um processo que são gerenciados pelo kernel através de uma estrutura do tipo \textit{process}. Estes processos são implementados como funções contendo \textit{loops} infinitos. A adição, remoção, pausa ou continuidade na execução dos processos é definida pelas interfaces disponibilizadas no kernel. Maiores detalhes do kernel e a implementação das rotinas são apresentados na próxima seção.
+%
+%O desenvolvimento da controladora de \textit{drivers} pode ser visto no anexo~\ref{chap:controladora}. Desenvolveu-se uma interface bastante simples para gerenciamento das interações entre a aplicação e os dispositivos, sendo composta de apenas 3 funções. Esta simplificação foi possível pela utilização de uma estrutura comum para todos os drivers, apresentada em verde no diagrama da Figura~\ref{fig:diagramaClasse}.
+%
+%Da estrutura apresentada, dois \textit{drivers} devem ser notados: \textit{drvPID} e \textit{ctrlMngr}. Embora gerenciados pela controladora como \textit{drivers} normais, eles não fazem acesso ao \textit{hardware} diretamente. Eles agrupam informações de outros \textit{drivers} ou provém novos modos de uso dos \textit{drivers} apresentados. 
+%
+%O desenvolvimento se concentrou na implementação de uma troca de contexto segura em um \textit{microkernel}. A estrutura de \textit{microkernel} foi escolhida por questões de isolamento e segurança \cite{tanenbaum2006can}. Foi desenvolvida uma controladora de \textit{drivers} permitindo a exibição, armazenamento e análise dos dados recolhidos do sistema. Optou-se por um sistema de controle real, como plataforma de testes, principalmente por este tipo de sistema necessitar de execução em tempo real.
+%
+%O Código~\ref{cod:kernelClock} apresenta a função responsável pela troca de contexto das tarefas e foi desenvolvido de acordo com as especificações apresentadas na Tabela~\ref{tab:StackSeguranca}.
+%
+%
+%\begin{lstlisting}[float,caption=Rotina responsável por executar a troca de contexto entre os processos,label=cod:kernelClock]
+%void interrupt kernelClock(void){
+%  //at this point CCR,D,X,Y,SP are stored on the stack
+%  volatile unsigned int SPdummy;     //stack pointer temporary value
+%  volatile unsigned int crc_on_stack;//point to the crc on the stack
+%  crc_on_stack = 1;           //just to avoid optmization error
+%    __asm PULD; __asm PULD;     //remove SPdummy & crc_on_stack
+%  __asm LDAA 0x30; __asm PSHA;//storing PPage on the stack
+%  __asm PSHD; __asm PSHD;     //recreating crc_on_stack & SPdummy
+%  __asm TSX;                  //fill SPdummy with actual stack position
+%  __asm STX SPdummy;
+%  
+%  //storing check value  
+%  if (pool[actualTask].Prio == RTOS){
+%    crc_on_stack  = hamming((unsigned char *)SPdummy+4,10);
+%  } else {
+%    crc_on_stack  = crc16((unsigned char *)SPdummy+4,10); 
+%  }
+%  __asm TSX;		  //save SP value on process info for further recover
+%  __asm STX SPdummy;
+%  pool[actualTask].StackPoint = SPdummy+2; //+2 to point to stack top
+%  if (pool[actualTask].Status == RUNNING){
+%    pool[actualTask].Status = READY;
+%  }
+%  actualTask = Scheduler();
+%  pool[actualTask].Status = RUNNING;
+%  SPdummy = pool[actualTask].StackPoint; 
+%  __asm LDX SPdummy; //load the next task SP from process info
+%  __asm TXS;
+%  __asm PSHD;        //restore space for SPdummy variable
+%  
+%  //reading check value and checking the data integrity
+%  if (pool[actualTask].Prio == RTOS){
+%    SPdummy  = hamming((unsigned char *)(pool[actualTask].StackPoint+2),10);
+%    if (crc_on_stack != SPdummy) { //making XOR to find bit changed
+%      crc_on_stack = (crc_on_stack^SPdummy) - 136; 
+%      if (crc_on_stack < 80){
+%*((unsigned char *) (pool[actualTask].StackPoint+2+(crc_on_stack/8))) = *((unsigned char *) (pool[actualTask].StackPoint+2+(crc_on_stack/8))) ^ (1<<(crc_on_stack%8));
+%      }
+%    }
+%  } else {
+%    SPdummy= crc16((unsigned char *)(pool[actualTask].StackPoint+2),10); 
+%    if (crc_on_stack != SPdummy) {
+%       SPdummy = restartTask(actualTask)-2;
+%       __asm LDX SPdummy;
+%       __asm TXS;
+%    }
+%  }
+%  __asm PULD; __asm PULD;     //remove crc_on_stack & SPdummy
+%  __asm PULA; __asm STAA 0x30;//set PPage for the next process
+%  CRGFLG = 0x80;              //clearing the RTI flag
+%  __asm RTI;                  //All other context loading is done by RTI
+%}
+%\end{lstlisting}
 
 \chapter{Resultados}
 

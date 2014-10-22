@@ -40,12 +40,6 @@
 {BREYFOGLE, F.~W. \emph{Implementing Six Sigma: smarter solutions using
   statistical methods}. [S.l.]: Wiley. com, 2003.}
 
-\bibitem[Chaudhari, Park e Abraham 2013]{chaudhari2013framework}
-\abntrefinfo{Chaudhari, Park e Abraham}{CHAUDHARI; PARK; ABRAHAM}{2013}
-{CHAUDHARI, A.; PARK, J.; ABRAHAM, J. A framework for low overhead hardware
-  based runtime control flow error detection and recovery. In:  IEEE.
-  \emph{VLSI Test Symposium (VTS), 2013 IEEE 31st}. [S.l.], 2013. p.~1--6.}
-
 \bibitem[Denardin e Barriquello 2013]{brtos2013online}
 \abntrefinfo{Denardin e Barriquello}{DENARDIN; BARRIQUELLO}{2013}
 {DENARDIN, G.; BARRIQUELLO, C.~H. \emph{BRTOS - Brazilian Real-Time Operating
@@ -62,13 +56,6 @@ Dispon{\'\i}vel em: \url{http://www.freertos.org}.}
 {GEOFF, T. \emph{Six Sigma: SPC and TQM in manufacturing and services}. [S.l.]:
   Gower Publishing, Ltd., 2001.}
 
-\bibitem[Kai, Xin e Guo 2012]{kai2012secure}
-\abntrefinfo{Kai, Xin e Guo}{KAI; XIN; GUO}{2012}
-{KAI, T.; XIN, X.; GUO, C. The secure boot of embedded system based on mobile
-  trusted module. In:  IEEE. \emph{Intelligent System Design and Engineering
-  Application (ISDEA), 2012 Second International Conference on}. [S.l.], 2012.
-  p. 1331--1334.}
-
 \bibitem[Koopman e Chakravarty 2004]{koopman2004cyclic}
 \abntrefinfo{Koopman e Chakravarty}{KOOPMAN; CHAKRAVARTY}{2004}
 {KOOPMAN, P.; CHAKRAVARTY, T. Cyclic redundancy code (crc) polynomial selection
@@ -80,11 +67,6 @@ Dispon{\'\i}vel em: \url{http://www.freertos.org}.}
 {KUROSE, J.~F.; ROSS, K.~W. \emph{Computer networking}. [S.l.]: Pearson
   Education, 2012.}
 
-\bibitem[LeMay e Gunter 2012]{lemay2012cumulative}
-\abntrefinfo{LeMay e Gunter}{LEMAY; GUNTER}{2012}
-{LEMAY, M.; GUNTER, C.~A. Cumulative attestation kernels for embedded systems.
-\emph{Smart Grid, IEEE Transactions on}, IEEE, v.~3, n.~2, p. 744--760, 2012.}
-
 \bibitem[Li et al. 2006]{li2006model}
 \abntrefinfo{Li et al.}{LI et al.}{2006}
 {LI, H. et al. A model for soft errors in the subthreshold cmos inverter. In:
@@ -95,12 +77,6 @@ Dispon{\'\i}vel em: \url{http://www.freertos.org}.}
 \abntrefinfo{Micrium}{MICRIUM}{2013}
 {MICRIUM. \emph{uC/OS-II Real Time Kernel}. 2013.
 Dispon{\'\i}vel em: \url{http://micrium.com/rtos/ucosii/overview/}.}
-
-\bibitem[PaXTeam 2012]{pax2012h2hc}
-\abntrefinfo{PaXTeam}{PAXTEAM}{2012}
-{PAXTEAM. \emph{PaX - kernel self-protection}. 2012.
-Dispon{\'\i}vel em:
-  \url{http://pax.grsecurity.net/docs/PaXTeam-H2HC12-PaX-kernel-self-protection.pdf}.}
 
 \bibitem[Peek 2013]{peek2013complexity}
 \abntrefinfo{Peek}{PEEK}{2013}
@@ -143,22 +119,10 @@ Dispon{\'\i}vel em:
 {STALLINGS, W. \emph{Operating Systems: Internals and Design Principles, 6/E}.
   [S.l.]: Pearson Education, 2009.}
 
-\bibitem[Tanenbaum, Herder e Bos 2006]{tanenbaum2006can}
-\abntrefinfo{Tanenbaum, Herder e Bos}{TANENBAUM; HERDER; BOS}{2006}
-{TANENBAUM, A.~S.; HERDER, J.~N.; BOS, H. Can we make operating systems
-  reliable and secure?
-\emph{Computer}, IEEE, v.~39, n.~5, p. 44--51, 2006.}
-
 \bibitem[Vakulenko 2011]{vakulenko2011online}
 \abntrefinfo{Vakulenko}{VAKULENKO}{2011}
 {VAKULENKO, S. \emph{uOS Operating System for Embedded Applications}. 2011.
 Dispon{\'\i}vel em: \url{https://code.google.com/p/uos-embedded/wiki/about}.}
-
-\bibitem[Ven 2004]{van2004new}
-\abntrefinfo{Ven}{VEN}{2004}
-{VEN, A. van~de. New security enhancements in red hat enterprise linux v. 3,
-  update 3.
-\emph{Red Hat, August}, 2004.}
 
 \bibitem[Wikipedia 2013]{wiki2013buffer}
 \abntrefinfo{Wikipedia}{WIKIPEDIA}{2013}
@@ -178,11 +142,5 @@ Dispon{\'\i}vel em:
 \abntrefinfo{Wulf et al.}{WULF et al.}{1974}
 {WULF, W. et al. Hydra: The kernel of a multiprocessor operating system.
 \emph{Communications of the ACM}, ACM, v.~17, n.~6, p. 337--345, 1974.}
-
-\bibitem[Yim et al. 2011]{yim2011hauberk}
-\abntrefinfo{Yim et al.}{YIM et al.}{2011}
-{YIM, K.~S. et al. Hauberk: Lightweight silent data corruption error detector
-  for gpgpu. In:  IEEE. \emph{Parallel \& Distributed Processing Symposium
-  (IPDPS), 2011 IEEE International}. [S.l.], 2011. p. 287--300.}
 
 \end{thebibliography}

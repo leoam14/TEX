@@ -1,13 +1,5 @@
 \noaddvspace 
 \select@language {brazil}
-\addvspace {10pt}
-\addvspace {10pt}
 \contentsline {table}{\numberline {1}{\ignorespaces Algoritmos para escalonamento, vantagens e desvantagens \cite {rao2009simplified}\relax }}{4}{table.caption.8}
 \contentsline {table}{\numberline {2}{\ignorespaces Probabilidade de falha em n\IeC {\'\i }veis sigma\relax }}{5}{table.caption.9}
-\addvspace {10pt}
-\addvspace {10pt}
-\contentsline {table}{\numberline {3}{\ignorespaces Compara\IeC {\c c}\IeC {\~a}o de consumo de mem\IeC {\'o}ria entre sistemas operacionais de tempo real\relax }}{13}{table.caption.15}
-\addvspace {10pt}
-\addvspace {10pt}
-\addvspace {10pt}
-\addvspace {10pt}
+\contentsline {table}{\numberline {3}{\ignorespaces Compara\IeC {\c c}\IeC {\~a}o de consumo de mem\IeC {\'o}ria entre sistemas operacionais de tempo real\relax }}{10}{table.caption.12}
